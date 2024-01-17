@@ -99,4 +99,17 @@ router.put("/change-status/:id", async (req, res) => {
   }
 });
 
+router.put("/update/:id", async (req, res) => {
+  try {
+    const job = await Job.findOne({ _id: req.params.id });
+    if (!job) {
+      res.status(404).json({ status: false, message: "Invalid Job ID" });
+    }
+    await Job.findOneAndUpdate({ _id: req.params.id }, { $set: req.body });
+    res.status(200).json({ status: true, message: "Job Details Updated" });
+  } catch (error) {
+    res.status(500).json({ status: false, message: "Something Went Wrong" });
+  }
+});
+
 module.exports = router;

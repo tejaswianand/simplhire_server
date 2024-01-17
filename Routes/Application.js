@@ -132,8 +132,8 @@ router.put("/change-status", async (req, res) => {
       from: '"SimplHire" <simplhire@focushub.cloud>',
       to: application.email,
       subject: "Application Status Changed",
-      text: `Hi ${application.name}, Your application status has been changed to <b>${status}</b><br/> Your Application ID is ${application._id}. View more details in My Applications Section of your <a href="${process.env.APP_USER_PROFILE_LINK}">Profile</a>.`,
-      html: `Hi ${application.name}, Your application status has been changed to <b>${status}</b><br/> Your Application ID is ${application._id}. View more details in My Applications Section of your <a href="${process.env.APP_USER_PROFILE_LINK}">Profile</a>`,
+      text: `Hi ${application.name}, Your application status has been <b>${status}</b><br/> Your Application ID is ${application._id}. View more details in My Applications Section of your <a href="${process.env.APP_USER_PROFILE_LINK}">Profile</a>.`,
+      html: `Hi ${application.name}, Your application status has been <b>${status}</b><br/> Your Application ID is ${application._id}. View more details in My Applications Section of your <a href="${process.env.APP_USER_PROFILE_LINK}">Profile</a>`,
     });
     res
       .status(200)
