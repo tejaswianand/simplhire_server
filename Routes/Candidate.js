@@ -145,6 +145,34 @@ router.put("/activate-account/:token", async (req, res) => {
   }
 });
 
+router.put("/update/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await Candidate.findOne({ _id: id });
+    if (!user) {
+      return res.status(404).json({
+        status: false,
+        message: "Invalid User",
+      });
+    }
+    await Candidate.findOneAndUpdate(
+      { _id: id },
+      { $set: req.body },
+      { new: true }
+    );
+    return res.status(200).json({
+      status: true,
+      message: "Details Updated",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: false,
+      message: "Something Went Wrong",
+    });
+  }
+});
+
 router.get("/find/:id", async (req, res) => {
   try {
     const user = await Candidate.findById(req.params.id).select("-password");

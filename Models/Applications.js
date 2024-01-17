@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 
 const applicationsSchema = new mongoose.Schema(
   {
-    postedBy: { type: String, required: true },
-    submittedBy: { type: String, required: true },
-    appliedFor: { type: String, required: true },
+    userId: { type: String, required: true },
+    jobId: { type: String, required: true },
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    expectedCTC: { type: String, required: true },
-    experience: { type: String, required: true },
+    expectedCtc: { type: String, required: true },
+    workExperience: { type: String, required: true },
+    resumeLink: { type: String, required: true },
+    status: { type: String, default: "submitted" },
   },
   { timestamps: true }
 );

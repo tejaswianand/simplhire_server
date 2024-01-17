@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const candidateRoutes = require("./Routes/Candidate");
 const recruiterRoutes = require("./Routes/Recruiter");
 const jobsRoutes = require("./Routes/Job");
+const applicationRoutes = require("./Routes/Application");
 const expressUploader = require("express-fileupload");
 const fetch = require("node-fetch");
 const axios = require("axios");
@@ -14,7 +15,7 @@ const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 var corsOptions = {
-  origin: ["http://localhost:3000", "http://192.168.1.6:3000"],
+  origin: ["http://localhost:3000", "http://192.168.1.7:3000"],
   optionsSuccessStatus: 200,
 };
 
@@ -50,6 +51,7 @@ app.post("/upload-resume", async (req, res) => {
 app.use("/recruiter", recruiterRoutes);
 app.use("/candidate", candidateRoutes);
 app.use("/jobs", jobsRoutes);
+app.use("/application", applicationRoutes);
 
 const PORT = process.env.PORT || 5002;
 app.get("/", (req, res) => {
